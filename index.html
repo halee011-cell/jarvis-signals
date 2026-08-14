@@ -9,72 +9,185 @@
         :root {
             --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
             --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-            --bg: #09090b;
-            --bg-card: #18181b;
-            --border: #27272a;
-            --text: #fafafa;
-            --text-muted: #a1a1aa;
-            --accent: #6d5cff;
-            --accent-light: #a78bfa;
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --bg: #050508;
+            --bg-elevated: #0c0c10;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --text: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+            --accent: #7c5cff;
+            --accent-glow: rgba(124, 92, 255, 0.15);
+            --accent-glow-strong: rgba(124, 92, 255, 0.25);
+            --green: #30d158;
+            --green-glow: rgba(48, 209, 88, 0.12);
+            --radius: 20px;
+            --radius-sm: 12px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.4706;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 980px; margin: 0 auto; padding: 0 22px; }
 
-        /* --- Header --- */
-        header {
-            padding: 120px 0 80px;
+        /* --- Nav (glassmorphism) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 22px;
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            background: rgba(5, 5, 8, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 200ms ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 7px 18px;
+            background: var(--accent);
+            color: white !important;
+            border-radius: 980px;
+            font-weight: 500;
+            font-size: 0.82rem;
+            transition: transform 160ms var(--ease-out), opacity 160ms ease;
+        }
+
+        .nav-cta:active {
+            transform: scale(0.97);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            position: relative;
+            padding: 180px 0 140px;
             text-align: center;
+            overflow: hidden;
         }
 
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 9999px;
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px 6px 8px;
+            background: var(--bg-glass);
             border: 1px solid var(--border);
-            background: var(--bg-card);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            border-radius: 980px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
             margin-bottom: 32px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-eyebrow .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green-glow);
         }
 
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            margin-bottom: 20px;
+            letter-spacing: -0.04em;
+            line-height: 1.04;
+            margin-bottom: 24px;
+            position: relative;
         }
 
-        h1 span {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        h1 .gradient {
+            background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, var(--accent) 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 6s ease-in-out infinite;
         }
 
-        .subtitle {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 520px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 200% center; }
         }
 
-        .cta-group {
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .hero-actions {
             display: flex;
-            gap: 12px;
+            gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -83,465 +196,771 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 28px;
-            border-radius: 12px;
+            padding: 16px 32px;
+            border-radius: 980px;
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 500;
             text-decoration: none;
             transition: transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
             cursor: pointer;
             border: none;
+            letter-spacing: -0.01em;
         }
 
-        .btn:active {
-            transform: scale(0.97);
-        }
+        .btn:active { transform: scale(0.97); }
 
         .btn:focus-visible {
             outline: 2px solid var(--accent);
-            outline-offset: 2px;
+            outline-offset: 3px;
         }
 
         .btn-primary {
             background: var(--accent);
             color: white;
+            box-shadow: 0 0 0 0 var(--accent-glow);
         }
 
         .btn-primary:hover {
-            box-shadow: 0 8px 30px rgba(109, 92, 255, 0.25);
+            box-shadow: 0 8px 40px var(--accent-glow-strong);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: var(--bg-card);
+            background: var(--bg-glass);
             color: var(--text);
             border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .btn-secondary:hover {
-            border-color: #3f3f46;
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         /* --- Services --- */
-        .services {
-            padding: 80px 0;
-        }
+        .section { padding: 120px 0; }
 
-        .section-label {
+        .section-eyebrow {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--accent);
             font-weight: 600;
             margin-bottom: 12px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
+        .section-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 48px;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.5;
+            margin-bottom: 56px;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
 
         .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px 28px;
-            transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+            background: var(--bg-elevated);
+            padding: 48px 36px;
+            position: relative;
+            transition: background 300ms ease;
         }
 
         .service-card:hover {
-            border-color: #3f3f46;
-            transform: translateY(-2px);
+            background: #111116;
+        }
+
+        .service-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 36px;
+            right: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(109, 92, 255, 0.1);
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--accent-glow);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin-bottom: 24px;
         }
 
         .service-card h3 {
-            font-size: 1.05rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
         }
 
         .service-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        /* --- Showcase (visual proof) --- */
+        .showcase {
+            padding: 120px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .showcase-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color 300ms ease, transform 300ms var(--ease-out);
+        }
+
+        .showcase-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .showcase-preview {
+            height: 220px;
+            background: linear-gradient(135deg, #0a0a12 0%, #12121c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-preview::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.3;
+        }
+
+        .mock-browser {
+            width: 85%;
+            height: 75%;
+            background: #1a1a24;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mock-bar {
+            height: 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 5px;
+        }
+
+        .mock-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mock-content {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mock-line {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mock-line.short { width: 40%; }
+        .mock-line.medium { width: 65%; }
+        .mock-line.long { width: 85%; }
+        .mock-line.accent { background: var(--accent-glow); width: 30%; }
+
+        .mock-block {
+            height: 40px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 8px;
+        }
+
+        .showcase-info {
+            padding: 28px 32px;
+        }
+
+        .showcase-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .showcase-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .showcase-info p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
         /* --- How It Works --- */
         .how {
-            padding: 80px 0;
+            padding: 120px 0;
             border-top: 1px solid var(--border);
         }
 
         .steps {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
             counter-reset: step;
         }
 
         .step {
-            position: relative;
+            background: var(--bg-elevated);
+            padding: 40px 28px;
             counter-increment: step;
+            position: relative;
         }
 
-        .step::before {
-            content: counter(step);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--accent);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
+        .step-num {
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 16px;
+            letter-spacing: -0.04em;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            margin-bottom: 20px;
         }
 
         .step h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 8px;
             letter-spacing: -0.01em;
+            margin-bottom: 10px;
         }
 
         .step p {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 0.85rem;
             line-height: 1.5;
         }
 
         /* --- Pricing --- */
         .pricing {
-            padding: 80px 0;
+            padding: 120px 0;
             border-top: 1px solid var(--border);
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
 
         .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
+            background: var(--bg-elevated);
+            padding: 40px 36px;
             display: flex;
             flex-direction: column;
-        }
-
-        .price-card.featured {
-            border-color: var(--accent);
             position: relative;
         }
 
-        .price-card.featured::after {
-            content: "Most Popular";
-            position: absolute;
-            top: -12px;
-            left: 32px;
-            padding: 4px 12px;
-            background: var(--accent);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 6px;
+        .price-card.featured {
+            background: linear-gradient(180deg, rgba(124, 92, 255, 0.06) 0%, var(--bg-elevated) 100%);
         }
 
-        .price-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
+        .price-card.featured::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .price-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-tertiary);
+            font-weight: 500;
             margin-bottom: 8px;
         }
 
+        .price-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
         .price-amount {
-            font-size: 2.2rem;
+            font-size: 3rem;
             font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--accent-light);
-            margin-bottom: 4px;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .price-card.featured .price-amount {
+            background: linear-gradient(135deg, var(--accent), #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .price-note {
-            color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            margin-bottom: 28px;
+        }
+
+        .price-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
             margin-bottom: 24px;
         }
 
         .price-features {
             list-style: none;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .price-features li {
-            padding: 6px 0;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-size: 0.88rem;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .price-features li::before {
-            content: "✓";
+        .price-features li .check {
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: rgba(109, 92, 255, 0.15);
-            color: var(--accent);
-            font-size: 0.65rem;
+            background: var(--green-glow);
+            color: var(--green);
+            font-size: 0.6rem;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        /* --- Quality --- */
-        .quality {
-            padding: 80px 0;
+        .price-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 980px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 160ms var(--ease-out);
+            cursor: pointer;
+            border: none;
+        }
+
+        .price-btn:active { transform: scale(0.98); }
+
+        .price-btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .price-btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .price-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- Trust --- */
+        .trust {
+            padding: 120px 0;
             border-top: 1px solid var(--border);
         }
 
-        .quality-grid {
+        .trust-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
         }
 
-        .quality-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            font-size: 0.9rem;
+        .trust-card {
+            background: var(--bg-elevated);
+            padding: 40px 32px;
+            text-align: center;
         }
 
-        .quality-item strong {
-            color: var(--text);
+        .trust-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .quality-item span {
-            color: var(--text-muted);
+        .trust-card h4 {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            letter-spacing: -0.01em;
         }
 
         /* --- Footer --- */
         footer {
-            padding: 40px 0;
+            padding: 48px 0;
             text-align: center;
-            color: #52525b;
-            font-size: 0.8rem;
             border-top: 1px solid var(--border);
         }
 
-        /* --- Stagger Animation --- */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        footer p {
+            color: var(--text-tertiary);
+            font-size: 0.78rem;
         }
 
-        .stagger > * {
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
             opacity: 0;
-            animation: fadeUp 300ms var(--ease-out) forwards;
+            animation: fadeUp 600ms var(--ease-out) forwards;
             will-change: transform, opacity;
         }
 
-        .stagger > *:nth-child(1) { animation-delay: 0ms; }
-        .stagger > *:nth-child(2) { animation-delay: 60ms; }
-        .stagger > *:nth-child(3) { animation-delay: 120ms; }
-        .stagger > *:nth-child(4) { animation-delay: 180ms; }
-        .stagger > *:nth-child(5) { animation-delay: 240ms; }
-        .stagger > *:nth-child(6) { animation-delay: 300ms; }
+        .reveal-d1 { animation-delay: 0ms; }
+        .reveal-d2 { animation-delay: 80ms; }
+        .reveal-d3 { animation-delay: 160ms; }
+        .reveal-d4 { animation-delay: 240ms; }
 
         @media (prefers-reduced-motion: reduce) {
-            .stagger > * {
-                animation: none;
-                opacity: 1;
-            }
+            .reveal { animation: none; opacity: 1; }
+            @keyframes shimmer { 0%, 100% { background-position: 0% center; } }
         }
 
         /* --- Responsive --- */
         @media (max-width: 768px) {
-            header { padding: 80px 0 60px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .quality-grid { grid-template-columns: 1fr; }
+            .hero { padding: 140px 0 100px; }
+            .nav-links { display: none; }
+            .services-grid,
+            .showcase-grid,
+            .steps,
+            .pricing-grid,
+            .trust-grid { grid-template-columns: 1fr; }
+            .showcase-preview { height: 180px; }
         }
 
         @media (hover: hover) and (pointer: fine) {
-            .service-card:hover { transform: translateY(-2px); }
+            .service-card:hover { background: #111116; }
+            .showcase-card:hover { transform: translateY(-4px); }
             .btn-primary:hover { transform: translateY(-1px); }
         }
     </style>
 </head>
 <body>
-    <header>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Cheng<span>-</span>Jam</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <a href="#pricing" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
         <div class="container">
-            <div class="badge">AI-Powered Firm</div>
-            <h1>Build what matters.<br><span>We handle the rest.</span></h1>
-            <p class="subtitle">Websites, automation, and business systems — built fast, priced fair, done right.</p>
-            <div class="cta-group">
+            <div class="hero-eyebrow reveal reveal-d1">
+                <span class="dot"></span>
+                Now accepting new clients
+            </div>
+            <h1 class="reveal reveal-d2">Build what<br>matters. <span class="gradient">We handle the rest.</span></h1>
+            <p class="hero-sub reveal reveal-d3">Websites, automation, and business systems — built fast, priced fair, done right.</p>
+            <div class="hero-actions reveal reveal-d4">
                 <a href="#pricing" class="btn btn-primary">See Pricing</a>
-                <a href="#how" class="btn btn-secondary">How It Works</a>
+                <a href="#work" class="btn btn-secondary">See Our Work</a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <section class="services">
-        <div class="container stagger">
-            <div class="section-label">What We Do</div>
-            <div class="section-title">Three services. Zero fluff.</div>
-            <div class="services-grid">
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-eyebrow reveal">What We Do</div>
+            <div class="section-headline reveal">Three services.<br>Zero fluff.</div>
+            <p class="section-sub reveal">Every service is designed to solve one problem well. No bloated packages, no upsells.</p>
+            <div class="services-grid reveal">
                 <div class="service-card">
                     <div class="service-icon">🌐</div>
                     <h3>Websites</h3>
-                    <p>Landing pages, business sites, e-commerce stores. Mobile-first, fast, SEO-ready.</p>
+                    <p>Landing pages, business sites, e-commerce stores. Every pixel intentional, every interaction smooth.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">⚡</div>
                     <h3>Automation</h3>
-                    <p>Workflow scripts, data pipelines, scheduling. Save hours every week.</p>
+                    <p>Workflow scripts, data pipelines, scheduling. Your business runs itself while you sleep.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">📊</div>
                     <h3>Business Systems</h3>
-                    <p>CRM setup, client tracking, operations. Run your business like a machine.</p>
+                    <p>CRM setup, client tracking, operations. The invisible machinery that makes everything work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="work">
+        <div class="container">
+            <div class="section-eyebrow reveal">Our Work</div>
+            <div class="section-headline reveal">Built with<br>intention.</div>
+            <p class="section-sub reveal">Every project is a custom solution. No templates, no shortcuts.</p>
+            <div class="showcase-grid">
+                <div class="showcase-card reveal reveal-d1">
+                    <div class="showcase-preview">
+                        <div class="mock-browser">
+                            <div class="mock-bar">
+                                <div class="mock-dot"></div>
+                                <div class="mock-dot"></div>
+                                <div class="mock-dot"></div>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-line accent"></div>
+                                <div class="mock-line long"></div>
+                                <div class="mock-line medium"></div>
+                                <div class="mock-block"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-info">
+                        <div class="showcase-tag">Landing Page</div>
+                        <h3>Local Business</h3>
+                        <p>Mobile-first design, 1.2s load time, 98 Lighthouse score.</p>
+                    </div>
+                </div>
+                <div class="showcase-card reveal reveal-d2">
+                    <div class="showcase-preview">
+                        <div class="mock-browser">
+                            <div class="mock-bar">
+                                <div class="mock-dot"></div>
+                                <div class="mock-dot"></div>
+                                <div class="mock-dot"></div>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-line short"></div>
+                                <div class="mock-line long"></div>
+                                <div class="mock-block"></div>
+                                <div class="mock-line medium"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-info">
+                        <div class="showcase-tag">Automation</div>
+                        <h3>Data Pipeline</h3>
+                        <p>Automated reporting system. Saved 12 hours per week.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="how" id="how">
-        <div class="container stagger">
-            <div class="section-label">How It Works</div>
-            <div class="section-title">Four steps. No surprises.</div>
-            <div class="steps">
+        <div class="container">
+            <div class="section-eyebrow reveal">How It Works</div>
+            <div class="section-headline reveal">Four steps.<br>No surprises.</div>
+            <p class="section-sub reveal">Transparent from start to finish. You always know what you're paying for.</p>
+            <div class="steps reveal">
                 <div class="step">
+                    <div class="step-num">01</div>
                     <h4>Tell Us</h4>
                     <p>Quick consultation. We scope the work and give you a fixed price.</p>
                 </div>
                 <div class="step">
+                    <div class="step-num">02</div>
                     <h4>Pay Deposit</h4>
-                    <p>50% upfront via Stripe. We start building immediately.</p>
+                    <p>50% upfront. We start building immediately.</p>
                 </div>
                 <div class="step">
+                    <div class="step-num">03</div>
                     <h4>Review</h4>
                     <p>You get a demo. Request changes. We make it right.</p>
                 </div>
                 <div class="step">
+                    <div class="step-num">04</div>
                     <h4>Done</h4>
-                    <p>Approve the work. Pay the balance. It's live.</p>
+                    <p>Approve. Pay the balance. It's live.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="pricing" id="pricing">
-        <div class="container stagger">
-            <div class="section-label">Pricing</div>
-            <div class="section-title">20% below market. No hidden fees.</div>
+        <div class="container">
+            <div class="section-eyebrow reveal">Pricing</div>
+            <div class="section-headline reveal">20% below market.<br>No hidden fees.</div>
+            <p class="section-sub reveal">You get the same quality as a premium agency, without the premium price tag.</p>
             <div class="pricing-grid">
-                <div class="price-card">
+                <div class="price-card reveal reveal-d1">
+                    <div class="price-label">Starter</div>
                     <h3>Landing Page</h3>
                     <div class="price-amount">$400</div>
                     <div class="price-note">$200 deposit + $200 on delivery</div>
+                    <div class="price-divider"></div>
                     <ul class="price-features">
-                        <li>Custom design</li>
-                        <li>Mobile responsive</li>
-                        <li>Contact form</li>
-                        <li>SEO basics</li>
-                        <li>3-day turnaround</li>
+                        <li><span class="check">✓</span>Custom design</li>
+                        <li><span class="check">✓</span>Mobile responsive</li>
+                        <li><span class="check">✓</span>Contact form</li>
+                        <li><span class="check">✓</span>SEO basics</li>
+                        <li><span class="check">✓</span>3-day turnaround</li>
                     </ul>
+                    <a href="#" class="price-btn price-btn-secondary">Get Started</a>
                 </div>
-                <div class="price-card featured">
+                <div class="price-card featured reveal reveal-d2">
+                    <div class="price-label">Most Popular</div>
                     <h3>Business Site</h3>
                     <div class="price-amount">$600</div>
                     <div class="price-note">$300 deposit + $300 on delivery</div>
+                    <div class="price-divider"></div>
                     <ul class="price-features">
-                        <li>Multi-page site</li>
-                        <li>Service + product pages</li>
-                        <li>About + contact</li>
-                        <li>Google Maps integration</li>
-                        <li>5-day turnaround</li>
+                        <li><span class="check">✓</span>Multi-page site</li>
+                        <li><span class="check">✓</span>Service + product pages</li>
+                        <li><span class="check">✓</span>About + contact</li>
+                        <li><span class="check">✓</span>Google Maps integration</li>
+                        <li><span class="check">✓</span>5-day turnaround</li>
                     </ul>
+                    <a href="#" class="price-btn price-btn-primary">Get Started</a>
                 </div>
-                <div class="price-card">
+                <div class="price-card reveal reveal-d3">
+                    <div class="price-label">Scale</div>
                     <h3>E-Commerce</h3>
                     <div class="price-amount">$2,500</div>
                     <div class="price-note">$1,250 deposit + $1,250 on delivery</div>
+                    <div class="price-divider"></div>
                     <ul class="price-features">
-                        <li>Product catalog</li>
-                        <li>Cart + checkout</li>
-                        <li>Payment processing</li>
-                        <li>Inventory management</li>
-                        <li>10-day turnaround</li>
+                        <li><span class="check">✓</span>Product catalog</li>
+                        <li><span class="check">✓</span>Cart + checkout</li>
+                        <li><span class="check">✓</span>Payment processing</li>
+                        <li><span class="check">✓</span>Inventory management</li>
+                        <li><span class="check">✓</span>10-day turnaround</li>
                     </ul>
+                    <a href="#" class="price-btn price-btn-secondary">Get Started</a>
                 </div>
-                <div class="price-card">
+                <div class="price-card reveal reveal-d4">
+                    <div class="price-label">Custom</div>
                     <h3>Automation</h3>
                     <div class="price-amount">$1,500</div>
                     <div class="price-note">$750 deposit + $750 on delivery</div>
+                    <div class="price-divider"></div>
                     <ul class="price-features">
-                        <li>Workflow mapping</li>
-                        <li>Custom scripts</li>
-                        <li>Scheduling systems</li>
-                        <li>Data pipelines</li>
-                        <li>7-day turnaround</li>
+                        <li><span class="check">✓</span>Workflow mapping</li>
+                        <li><span class="check">✓</span>Custom scripts</li>
+                        <li><span class="check">✓</span>Scheduling systems</li>
+                        <li><span class="check">✓</span>Data pipelines</li>
+                        <li><span class="check">✓</span>7-day turnaround</li>
                     </ul>
+                    <a href="#" class="price-btn price-btn-secondary">Get Started</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="quality">
-        <div class="container stagger">
-            <div class="section-label">Quality Guarantee</div>
-            <div class="section-title">Every delivery passes 10 checks.</div>
-            <div class="quality-grid">
-                <div class="quality-item"><strong>Mobile First</strong> <span>— works perfectly on every screen.</span></div>
-                <div class="quality-item"><strong>Fast Loading</strong> <span>— under 100KB, loads in under 2 seconds.</span></div>
-                <div class="quality-item"><strong>SEO Ready</strong> <span>— proper headings, meta tags, semantic HTML.</span></div>
-                <div class="quality-item"><strong>SSL Secured</strong> <span>— HTTPS enabled from day one.</span></div>
-                <div class="quality-item"><strong>2 Revisions</strong> <span>— we refine until you're happy.</span></div>
-                <div class="quality-item"><strong>10-Point Check</strong> <span>— nothing leaves without passing.</span></div>
+    <section class="trust">
+        <div class="container">
+            <div class="section-eyebrow reveal">Quality Guarantee</div>
+            <div class="section-headline reveal">Every delivery<br>passes 10 checks.</div>
+            <p class="section-sub reveal">We don't ship until it's right.</p>
+            <div class="trust-grid reveal">
+                <div class="trust-card">
+                    <div class="trust-number">100%</div>
+                    <h4>Mobile Responsive</h4>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-number">&lt;2s</div>
+                    <h4>Load Time</h4>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-number">98+</div>
+                    <h4>Lighthouse Score</h4>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">&copy; 2026 Cheng-Jam. All rights reserved.</div>
+        <div class="container">
+            <p>&copy; 2026 Cheng-Jam. All rights reserved.</p>
+        </div>
     </footer>
 </body>
 </html>
