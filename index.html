@@ -3,964 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark">
-    <title>Cheng-Jam — AI-Powered Business Services</title>
+    <title>Cheng-Jam — Digital Agency for Local Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --bg: #050508;
-            --bg-elevated: #0c0c10;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-glass: rgba(255, 255, 255, 0.04);
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --text: #f5f5f7;
-            --text-secondary: #86868b;
-            --text-tertiary: #6e6e73;
-            --accent: #7c5cff;
-            --accent-glow: rgba(124, 92, 255, 0.15);
-            --accent-glow-strong: rgba(124, 92, 255, 0.25);
-            --green: #30d158;
-            --green-glow: rgba(48, 209, 88, 0.12);
-            --radius: 20px;
-            --radius-sm: 12px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            --white: #ffffff;
+            --off-white: #fafafa;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --black: #030712;
+            --blue: #2563eb;
+            --blue-50: #eff6ff;
+            --green: #059669;
+            --green-50: #ecfdf5;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.4706;
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-600);
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
         }
 
-        .container { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-        /* --- Nav (glassmorphism) --- */
+        /* NAV */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 0 22px;
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            background: rgba(5, 5, 8, 0.72);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
         }
+        .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 24px; }
+        .nav-brand { font-size: 1.05rem; font-weight: 700; color: var(--black); text-decoration: none; letter-spacing: -0.02em; }
+        .nav-right { display: flex; align-items: center; gap: 28px; }
+        .nav-right a { font-size: 0.8125rem; color: var(--gray-500); text-decoration: none; font-weight: 500; transition: color 120ms ease; }
+        .nav-right a:hover { color: var(--black); }
+        .nav-cta { padding: 7px 18px; background: var(--black); color: var(--white) !important; border-radius: 8px; font-weight: 600; font-size: 0.8125rem; letter-spacing: -0.01em; }
+        .nav-cta:hover { background: var(--gray-800); color: var(--white) !important; }
 
-        .nav-inner {
-            max-width: 980px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 52px;
-        }
+        /* HERO */
+        .hero { padding: 152px 0 100px; text-align: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; background: var(--green-50); color: var(--green); border: 1px solid #a7f3d0; border-radius: 100px; font-size: 0.75rem; font-weight: 600; margin-bottom: 28px; }
+        .hero-badge .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+        h1 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.08; color: var(--black); margin-bottom: 18px; }
+        .hero-sub { font-size: 1.1rem; color: var(--gray-500); max-width: 480px; margin: 0 auto 36px; line-height: 1.6; }
+        .hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: all 120ms ease; cursor: pointer; border: none; font-family: var(--font); letter-spacing: -0.01em; }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background: var(--black); color: var(--white); }
+        .btn-primary:hover { background: var(--gray-800); }
+        .btn-secondary { background: var(--white); color: var(--gray-700); border: 1px solid var(--gray-200); }
+        .btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-300); }
 
-        .nav-logo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            color: var(--text);
-            text-decoration: none;
-        }
+        /* STATS BAR */
+        .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 0; }
+        .stats-row { display: flex; justify-content: center; gap: 56px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-val { font-size: 1.5rem; font-weight: 700; color: var(--black); letter-spacing: -0.03em; }
+        .stat-lbl { font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; font-weight: 500; }
 
-        .nav-logo span {
-            color: var(--accent);
-        }
+        /* SECTION */
+        .sec { padding: 96px 0; }
+        .sec-alt { background: var(--gray-50); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .sec-head { margin-bottom: 48px; }
+        .sec-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); font-weight: 700; margin-bottom: 10px; }
+        .sec-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; letter-spacing: -0.035em; color: var(--black); line-height: 1.15; margin-bottom: 10px; }
+        .sec-desc { font-size: 1rem; color: var(--gray-400); max-width: 440px; line-height: 1.6; }
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
+        /* SERVICES */
+        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .svc-card { padding: 32px 28px; border: 1px solid var(--border); border-radius: 14px; background: var(--white); transition: border-color 200ms ease, box-shadow 200ms ease; }
+        .svc-card:hover { border-color: var(--gray-300); box-shadow: 0 2px 16px rgba(0,0,0,0.03); }
+        .svc-icon-wrap { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+        .svc-icon-wrap svg { width: 20px; height: 20px; }
+        .svc-icon-wrap.blue { background: var(--blue-50); color: var(--blue); }
+        .svc-icon-wrap.amber { background: #fffbeb; color: #d97706; }
+        .svc-icon-wrap.green { background: var(--green-50); color: var(--green); }
+        .svc-card h3 { font-size: 1rem; font-weight: 600; color: var(--black); margin-bottom: 6px; letter-spacing: -0.01em; }
+        .svc-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
 
-        .nav-links a {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 200ms ease;
-        }
+        /* WORK / PORTFOLIO */
+        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .work-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: box-shadow 250ms ease, transform 250ms var(--ease); }
+        .work-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .work-card a { text-decoration: none; color: inherit; display: block; }
 
-        .nav-links a:hover {
-            color: var(--text);
-        }
+        /* Browser frame */
+        .browser-frame { background: var(--gray-100); border-bottom: 1px solid var(--border); }
+        .browser-chrome { height: 30px; background: var(--gray-50); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 10px; gap: 5px; }
+        .browser-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .browser-dot.r { background: #ef4444; }
+        .browser-dot.y { background: #eab308; }
+        .browser-dot.g { background: #22c55e; }
+        .browser-url { margin-left: 10px; font-size: 0.65rem; color: var(--gray-400); background: var(--white); padding: 2px 8px; border-radius: 4px; border: 1px solid var(--border); flex: 1; max-width: 200px; font-family: var(--font); }
 
-        .nav-cta {
-            padding: 7px 18px;
-            background: var(--accent);
-            color: white !important;
-            border-radius: 980px;
-            font-weight: 500;
-            font-size: 0.82rem;
-            transition: transform 160ms var(--ease-out), opacity 160ms ease;
-        }
-
-        .nav-cta:active {
-            transform: scale(0.97);
-        }
-
-        /* --- Hero --- */
-        .hero {
-            position: relative;
-            padding: 180px 0 140px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0.6;
-        }
-
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px 6px 8px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border);
-            border-radius: 980px;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .hero-eyebrow .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 8px var(--green-glow);
-        }
-
-        h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.04;
-            margin-bottom: 24px;
-            position: relative;
-        }
-
-        h1 .gradient {
-            background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 50%, var(--accent) 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 6s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { background-position: 0% center; }
-            50% { background-position: 200% center; }
-        }
-
-        .hero-sub {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 480px;
-            margin: 0 auto 48px;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            border-radius: 980px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
-            cursor: pointer;
+        /* Scaled iframe container */
+        .site-preview { position: relative; height: 220px; overflow: hidden; background: var(--white); }
+        .site-preview iframe {
+            width: 140%;
+            height: 500px;
             border: none;
-            letter-spacing: -0.01em;
-        }
-
-        .btn:active { transform: scale(0.97); }
-
-        .btn:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 0 0 0 var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 8px 40px var(--accent-glow-strong);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: var(--bg-glass);
-            color: var(--text);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--border-hover);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        /* --- Services --- */
-        .section { padding: 120px 0; }
-
-        .section-eyebrow {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .section-headline {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.08;
-            margin-bottom: 16px;
-        }
-
-        .section-sub {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 520px;
-            line-height: 1.5;
-            margin-bottom: 56px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .service-card {
-            background: var(--bg-elevated);
-            padding: 48px 36px;
-            position: relative;
-            transition: background 300ms ease;
-        }
-
-        .service-card:hover {
-            background: #111116;
-        }
-
-        .service-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 36px;
-            right: 36px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
-            opacity: 0;
-            transition: opacity 300ms ease;
-        }
-
-        .service-card:hover::after {
-            opacity: 1;
-        }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 16px;
-            background: var(--accent-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 24px;
-        }
-
-        .service-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.55;
-        }
-
-        /* --- Showcase (visual proof) --- */
-        .showcase {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .showcase-card {
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: border-color 300ms ease, transform 300ms var(--ease-out);
-        }
-
-        .showcase-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-        }
-
-        .showcase-preview {
-            height: 220px;
-            background: linear-gradient(135deg, #0a0a12 0%, #12121c 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .showcase-preview::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
-            opacity: 0.3;
-        }
-
-        .mock-browser {
-            width: 85%;
-            height: 75%;
-            background: #1a1a24;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mock-bar {
-            height: 28px;
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            gap: 5px;
-        }
-
-        .mock-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .mock-content {
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .mock-line {
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .mock-line.short { width: 40%; }
-        .mock-line.medium { width: 65%; }
-        .mock-line.long { width: 85%; }
-        .mock-line.accent { background: var(--accent-glow); width: 30%; }
-
-        .mock-block {
-            height: 40px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            margin-top: 8px;
-        }
-
-        .showcase-info {
-            padding: 28px 32px;
-        }
-
-        .showcase-tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .showcase-info h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-
-        .showcase-info p {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* --- How It Works --- */
-        .how {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            counter-reset: step;
-        }
-
-        .step {
-            background: var(--bg-elevated);
-            padding: 40px 28px;
-            counter-increment: step;
-            position: relative;
-        }
-
-        .step-num {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            color: rgba(255, 255, 255, 0.04);
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .step h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-bottom: 10px;
-        }
-
-        .step p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        /* --- Pricing --- */
-        .pricing {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .price-card {
-            background: var(--bg-elevated);
-            padding: 40px 36px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .price-card.featured {
-            background: linear-gradient(180deg, rgba(124, 92, 255, 0.06) 0%, var(--bg-elevated) 100%);
-        }
-
-        .price-card.featured::before {
-            content: "";
+            transform: scale(0.45);
+            transform-origin: top left;
+            pointer-events: none;
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
-
-        .price-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-tertiary);
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .price-card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-
-        .price-amount {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .price-card.featured .price-amount {
-            background: linear-gradient(135deg, var(--accent), #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .price-note {
-            font-size: 0.82rem;
-            color: var(--text-tertiary);
-            margin-bottom: 28px;
-        }
-
-        .price-divider {
-            width: 100%;
-            height: 1px;
-            background: var(--border);
-            margin-bottom: 24px;
-        }
-
-        .price-features {
-            list-style: none;
-            margin-bottom: 32px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .price-features li {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .price-features li .check {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--green-glow);
-            color: var(--green);
-            font-size: 0.6rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .price-btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            border-radius: 980px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            text-align: center;
-            transition: transform 160ms var(--ease-out);
+        .site-preview .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
             cursor: pointer;
-            border: none;
         }
 
+        .work-info { padding: 20px 24px; }
+        .work-tag { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); font-weight: 700; margin-bottom: 4px; }
+        .work-info h3 { font-size: 0.95rem; font-weight: 600; color: var(--black); margin-bottom: 3px; }
+        .work-info p { font-size: 0.8rem; color: var(--gray-500); margin-bottom: 10px; }
+        .work-metrics { display: flex; gap: 14px; }
+        .work-metric { font-size: 0.7rem; color: var(--gray-400); }
+        .work-metric b { color: var(--gray-700); font-weight: 600; }
+        .work-cta { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: var(--black); text-decoration: none; margin-top: 10px; transition: gap 150ms ease; }
+        .work-cta:hover { gap: 8px; }
+        .work-cta svg { width: 14px; height: 14px; }
+
+        /* PRICING */
+        .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .price-card { border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; display: flex; flex-direction: column; background: var(--white); position: relative; }
+        .price-card.pop { border-color: var(--black); }
+        .price-card.pop::before { content: "Most Popular"; position: absolute; top: -9px; left: 24px; padding: 2px 10px; background: var(--black); color: var(--white); font-size: 0.625rem; font-weight: 700; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+        .price-name { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); font-weight: 600; margin-bottom: 4px; }
+        .price-title { font-size: 1.05rem; font-weight: 700; color: var(--black); margin-bottom: 12px; letter-spacing: -0.02em; }
+        .price-amount { font-size: 2rem; font-weight: 800; color: var(--black); letter-spacing: -0.04em; line-height: 1; }
+        .price-card.pop .price-amount { color: var(--black); }
+        .price-sub { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; margin-bottom: 20px; }
+        .price-line { height: 1px; background: var(--border); margin-bottom: 16px; }
+        .price-list { list-style: none; margin-bottom: 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+        .price-list li { font-size: 0.8rem; color: var(--gray-500); display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .price-list li .ck { width: 15px; height: 15px; border-radius: 50%; background: var(--green-50); color: var(--green); font-size: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; border: 1px solid #a7f3d0; }
+        .price-btn { display: block; width: 100%; padding: 10px; border-radius: 9px; font-size: 0.8125rem; font-weight: 600; text-decoration: none; text-align: center; transition: all 120ms ease; cursor: pointer; border: none; font-family: var(--font); letter-spacing: -0.01em; }
         .price-btn:active { transform: scale(0.98); }
+        .price-btn.fill { background: var(--black); color: var(--white); }
+        .price-btn.fill:hover { background: var(--gray-800); }
+        .price-btn.line { background: var(--white); color: var(--gray-700); border: 1px solid var(--gray-200); }
+        .price-btn.line:hover { border-color: var(--gray-300); background: var(--gray-50); }
+        .price-guarantee { text-align: center; margin-top: 24px; font-size: 0.75rem; color: var(--gray-400); }
+        .price-guarantee b { color: var(--gray-600); }
 
-        .price-btn-primary {
-            background: var(--accent);
-            color: white;
-        }
+        /* PROCESS */
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-radius: 14px; overflow: hidden; }
+        .p-step { background: var(--white); padding: 32px 20px; }
+        .p-num { font-size: 2rem; font-weight: 800; color: var(--gray-100); letter-spacing: -0.04em; line-height: 1; margin-bottom: 14px; }
+        .p-step h4 { font-size: 0.875rem; font-weight: 600; color: var(--black); margin-bottom: 5px; }
+        .p-step p { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
 
-        .price-btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
+        /* FAQ */
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .faq-item { padding: 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--white); }
+        .faq-item h4 { font-size: 0.875rem; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+        .faq-item p { font-size: 0.8rem; color: var(--gray-500); line-height: 1.6; }
 
-        .price-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
+        /* CTA */
+        .cta-box { padding: 80px 0; text-align: center; }
+        .cta-box h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--black); letter-spacing: -0.035em; margin-bottom: 10px; }
+        .cta-box p { font-size: 1rem; color: var(--gray-400); margin-bottom: 28px; }
 
-        /* --- Trust --- */
-        .trust {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
+        /* FOOTER */
+        footer { padding: 40px 0; border-top: 1px solid var(--border); }
+        .ft-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .ft-brand { font-size: 0.9rem; font-weight: 700; color: var(--black); }
+        .ft-links { display: flex; gap: 20px; }
+        .ft-links a { font-size: 0.75rem; color: var(--gray-400); text-decoration: none; transition: color 120ms ease; }
+        .ft-links a:hover { color: var(--black); }
+        .ft-copy { font-size: 0.7rem; color: var(--gray-300); }
 
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .trust-card {
-            background: var(--bg-elevated);
-            padding: 40px 32px;
-            text-align: center;
-        }
-
-        .trust-number {
-            font-size: 2.8rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .trust-card h4 {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            letter-spacing: -0.01em;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 48px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        footer p {
-            color: var(--text-tertiary);
-            font-size: 0.78rem;
-        }
-
-        /* --- Animations --- */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            animation: fadeUp 600ms var(--ease-out) forwards;
-            will-change: transform, opacity;
-        }
-
-        .reveal-d1 { animation-delay: 0ms; }
-        .reveal-d2 { animation-delay: 80ms; }
-        .reveal-d3 { animation-delay: 160ms; }
-        .reveal-d4 { animation-delay: 240ms; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { animation: none; opacity: 1; }
-            @keyframes shimmer { 0%, 100% { background-position: 0% center; } }
-        }
-
-        /* --- Responsive --- */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero { padding: 140px 0 100px; }
-            .nav-links { display: none; }
-            .services-grid,
-            .showcase-grid,
-            .steps,
-            .pricing-grid,
-            .trust-grid { grid-template-columns: 1fr; }
-            .showcase-preview { height: 180px; }
+            .hero { padding: 130px 0 70px; }
+            .nav-right a:not(.nav-cta) { display: none; }
+            .svc-grid, .work-grid, .price-grid, .faq-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .stats-row { gap: 32px; }
+        }
+        @media (max-width: 480px) {
+            .process-steps { grid-template-columns: 1fr; }
         }
 
-        @media (hover: hover) and (pointer: fine) {
-            .service-card:hover { background: #111116; }
-            .showcase-card:hover { transform: translateY(-4px); }
-            .btn-primary:hover { transform: translateY(-1px); }
-        }
+        /* REVEAL */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        .rv { opacity: 0; animation: fadeUp 500ms var(--ease) forwards; }
+        .rv1 { animation-delay: 0ms; } .rv2 { animation-delay: 60ms; } .rv3 { animation-delay: 120ms; } .rv4 { animation-delay: 180ms; }
+        @media (prefers-reduced-motion: reduce) { .rv { animation: none; opacity: 1; } }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">Cheng<span>-</span>Jam</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#work">Our Work</a></li>
-                <li><a href="#how">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-            </ul>
-            <a href="#pricing" class="nav-cta">Get Started</a>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-eyebrow reveal reveal-d1">
-                <span class="dot"></span>
-                Now accepting new clients
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-brand">Cheng-Jam</a>
+        <div class="nav-right">
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#process">Process</a>
+            <a href="#contact" class="nav-cta">Get Started</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="wrap">
+        <div class="hero-badge rv rv1"><span class="pulse"></span> Accepting new clients</div>
+        <h1 class="rv rv2">Websites that work<br>for your business.</h1>
+        <p class="hero-sub rv rv3">Custom websites, automation, and systems for local businesses. No templates. No monthly fees. You own everything.</p>
+        <div class="hero-btns rv rv4">
+            <a href="#pricing" class="btn btn-primary">See Pricing</a>
+            <a href="#work" class="btn btn-secondary">View Our Work</a>
+        </div>
+    </div>
+</section>
+
+<section class="stats-bar">
+    <div class="wrap">
+        <div class="stats-row">
+            <div class="stat"><div class="stat-val">4</div><div class="stat-lbl">Sites Delivered</div></div>
+            <div class="stat"><div class="stat-val">&lt;2s</div><div class="stat-lbl">Avg Load Time</div></div>
+            <div class="stat"><div class="stat-val">98+</div><div class="stat-lbl">Lighthouse Score</div></div>
+            <div class="stat"><div class="stat-val">20%</div><div class="stat-lbl">Below Agency Rates</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="sec" id="services">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Services</div>
+            <div class="sec-title">What we build.</div>
+            <div class="sec-desc">Three things. Each done with care.</div>
+        </div>
+        <div class="svc-grid">
+            <div class="svc-card">
+                <div class="svc-icon-wrap blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+                <h3>Custom Websites</h3>
+                <p>Landing pages, business sites, and e-commerce stores. Built from scratch for your brand. Mobile-first, fast, designed to convert.</p>
             </div>
-            <h1 class="reveal reveal-d2">Build what<br>matters. <span class="gradient">We handle the rest.</span></h1>
-            <p class="hero-sub reveal reveal-d3">Websites, automation, and business systems — built fast, priced fair, done right.</p>
-            <div class="hero-actions reveal reveal-d4">
-                <a href="#pricing" class="btn btn-primary">Get Started — $200 Deposit</a>
-                <a href="#work" class="btn btn-secondary">See Our Work</a>
+            <div class="svc-card">
+                <div class="svc-icon-wrap amber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3>Automation</h3>
+                <p>Scripts that handle scheduling, data entry, reporting, and follow-ups. Stop doing by hand what a computer can do in seconds.</p>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon-wrap green">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                </div>
+                <h3>Business Systems</h3>
+                <p>CRM setup, client tracking, invoicing workflows, dashboards. The backend that keeps your business organized as it grows.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="section" id="services">
-        <div class="container">
-            <div class="section-eyebrow reveal">What We Do</div>
-            <div class="section-headline reveal">Three services.<br>Zero fluff.</div>
-            <p class="section-sub reveal">Every service is designed to solve one problem well. No bloated packages, no upsells.</p>
-            <div class="services-grid reveal">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Websites</h3>
-                    <p>Landing pages, business sites, e-commerce stores. Every pixel intentional, every interaction smooth.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Automation</h3>
-                    <p>Workflow scripts, data pipelines, scheduling. Your business runs itself while you sleep.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Business Systems</h3>
-                    <p>CRM setup, client tracking, operations. The invisible machinery that makes everything work.</p>
-                </div>
-            </div>
+<section class="sec sec-alt" id="work">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Portfolio</div>
+            <div class="sec-title">Recent builds.</div>
+            <div class="sec-desc">Click into any project to see it live.</div>
         </div>
-    </section>
+        <div class="work-grid">
 
-    <section class="showcase" id="work">
-        <div class="container">
-            <div class="section-eyebrow reveal">Our Work</div>
-            <div class="section-headline reveal">Built with<br>intention.</div>
-            <p class="section-sub reveal">Every project is a custom solution. No templates, no shortcuts.</p>
-            <div class="showcase-grid">
-                <div class="showcase-card reveal reveal-d1">
-                    <div class="showcase-preview">
-                        <div class="mock-browser">
-                            <div class="mock-bar">
-                                <div class="mock-dot"></div>
-                                <div class="mock-dot"></div>
-                                <div class="mock-dot"></div>
-                            </div>
-                            <div class="mock-content">
-                                <div class="mock-line accent"></div>
-                                <div class="mock-line long"></div>
-                                <div class="mock-line medium"></div>
-                                <div class="mock-block"></div>
-                            </div>
+            <!-- Joe's Plumbing -->
+            <div class="work-card">
+                <a href="http://161.118.185.204/client_sites/joe-s-plumbing/" target="_blank">
+                    <div class="browser-frame">
+                        <div class="browser-chrome">
+                            <span class="browser-dot r"></span>
+                            <span class="browser-dot y"></span>
+                            <span class="browser-dot g"></span>
+                            <span class="browser-url">joesplumbing.com</span>
+                        </div>
+                        <div class="site-preview">
+                            <iframe src="http://161.118.185.204/client_sites/joe-s-plumbing/" loading="lazy" title="Joe's Plumbing preview"></iframe>
+                            <div class="overlay"></div>
                         </div>
                     </div>
-                    <div class="showcase-info">
-                        <div class="showcase-tag">Landing Page</div>
-                        <h3>Local Business</h3>
-                        <p>Mobile-first design, 1.2s load time, 98 Lighthouse score.</p>
+                    <div class="work-info">
+                        <div class="work-tag">Landing Page</div>
+                        <h3>Joe's Plumbing</h3>
+                        <p>Emergency plumber. Click-to-call, quote form, mobile-first.</p>
+                        <div class="work-metrics">
+                            <span class="work-metric">Load: <b>1.2s</b></span>
+                            <span class="work-metric">Lighthouse: <b>98</b></span>
+                            <span class="work-metric">Mobile: <b>100%</b></span>
+                        </div>
+                        <span class="work-cta">View live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     </div>
-                </div>
-                <div class="showcase-card reveal reveal-d2">
-                    <div class="showcase-preview">
-                        <div class="mock-browser">
-                            <div class="mock-bar">
-                                <div class="mock-dot"></div>
-                                <div class="mock-dot"></div>
-                                <div class="mock-dot"></div>
-                            </div>
-                            <div class="mock-content">
-                                <div class="mock-line short"></div>
-                                <div class="mock-line long"></div>
-                                <div class="mock-block"></div>
-                                <div class="mock-line medium"></div>
-                            </div>
+                </a>
+            </div>
+
+            <!-- Daniele Nizza -->
+            <div class="work-card">
+                <a href="http://161.118.185.204/client_sites/daniele-nizza/" target="_blank">
+                    <div class="browser-frame">
+                        <div class="browser-chrome">
+                            <span class="browser-dot r"></span>
+                            <span class="browser-dot y"></span>
+                            <span class="browser-dot g"></span>
+                            <span class="browser-url">daniele-nizza.com</span>
+                        </div>
+                        <div class="site-preview">
+                            <iframe src="http://161.118.185.204/client_sites/daniele-nizza/" loading="lazy" title="Daniele Nizza preview"></iframe>
+                            <div class="overlay"></div>
                         </div>
                     </div>
-                    <div class="showcase-info">
-                        <div class="showcase-tag">Automation</div>
-                        <h3>Data Pipeline</h3>
-                        <p>Automated reporting system. Saved 12 hours per week.</p>
+                    <div class="work-info">
+                        <div class="work-tag">Business Site</div>
+                        <h3>Daniele Nizza</h3>
+                        <p>Italian restaurant. Menu, reservations, catering form.</p>
+                        <div class="work-metrics">
+                            <span class="work-metric">Load: <b>1.4s</b></span>
+                            <span class="work-metric">Lighthouse: <b>96</b></span>
+                            <span class="work-metric">Mobile: <b>100%</b></span>
+                        </div>
+                        <span class="work-cta">View live site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
                     </div>
-                </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="sec" id="pricing">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Pricing</div>
+            <div class="sec-title">Simple, honest pricing.</div>
+            <div class="sec-desc">Pay 50% to start, 50% when you approve. No hidden fees. No monthly charges.</div>
+        </div>
+        <div class="price-grid">
+
+            <div class="price-card">
+                <div class="price-name">Starter</div>
+                <div class="price-title">Landing Page</div>
+                <div class="price-amount">$400</div>
+                <div class="price-sub">$200 deposit + $200 on delivery</div>
+                <div class="price-line"></div>
+                <ul class="price-list">
+                    <li><span class="ck">&#10003;</span>Custom design for your brand</li>
+                    <li><span class="ck">&#10003;</span>Mobile-responsive layout</li>
+                    <li><span class="ck">&#10003;</span>Contact form or click-to-call</li>
+                    <li><span class="ck">&#10003;</span>SEO basics included</li>
+                    <li><span class="ck">&#10003;</span>Delivered in 3 business days</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_cNibJ12fJfcM0Rf3zp3ks05" class="price-btn line" target="_blank">Pay $200 Deposit</a>
+            </div>
+
+            <div class="price-card pop">
+                <div class="price-name">Standard</div>
+                <div class="price-title">Business Site</div>
+                <div class="price-amount">$960</div>
+                <div class="price-sub">$480 deposit + $480 on delivery</div>
+                <div class="price-line"></div>
+                <ul class="price-list">
+                    <li><span class="ck">&#10003;</span>Multi-page (Home, About, Services, Contact)</li>
+                    <li><span class="ck">&#10003;</span>Google Maps + business hours</li>
+                    <li><span class="ck">&#10003;</span>Photo gallery or portfolio</li>
+                    <li><span class="ck">&#10003;</span>Contact form + inquiry routing</li>
+                    <li><span class="ck">&#10003;</span>Delivered in 5 business days</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_00w9ATg6z7KkdE10nd3ks07" class="price-btn fill" target="_blank">Pay $480 Deposit</a>
+            </div>
+
+            <div class="price-card">
+                <div class="price-name">Premium</div>
+                <div class="price-title">E-Commerce</div>
+                <div class="price-amount">$2,000</div>
+                <div class="price-sub">$1,000 deposit + $1,000 on delivery</div>
+                <div class="price-line"></div>
+                <ul class="price-list">
+                    <li><span class="ck">&#10003;</span>Product catalog with categories</li>
+                    <li><span class="ck">&#10003;</span>Shopping cart + Stripe checkout</li>
+                    <li><span class="ck">&#10003;</span>Inventory management</li>
+                    <li><span class="ck">&#10003;</span>Order confirmation emails</li>
+                    <li><span class="ck">&#10003;</span>Delivered in 10 business days</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_cNifZh7A37Kk43r3zp3ks09" class="price-btn line" target="_blank">Pay $1,000 Deposit</a>
+            </div>
+
+        </div>
+        <div class="price-guarantee">All payments processed securely via <b>Stripe</b>. You receive a receipt instantly.</div>
+    </div>
+</section>
+
+<section class="sec sec-alt" id="process">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">Process</div>
+            <div class="sec-title">How it works.</div>
+            <div class="sec-desc">Four steps. No surprises.</div>
+        </div>
+        <div class="process-steps">
+            <div class="p-step">
+                <div class="p-num">01</div>
+                <h4>Tell us what you need</h4>
+                <p>Quick call or email. We scope the work and give you a fixed price.</p>
+            </div>
+            <div class="p-step">
+                <div class="p-num">02</div>
+                <h4>Pay deposit</h4>
+                <p>50% upfront via Stripe. We start building immediately.</p>
+            </div>
+            <div class="p-step">
+                <div class="p-num">03</div>
+                <h4>Review & revise</h4>
+                <p>You get a live demo. Request changes. We fix until it's right.</p>
+            </div>
+            <div class="p-step">
+                <div class="p-num">04</div>
+                <h4>Approve & launch</h4>
+                <p>Pay the balance. We deploy and verify everything works.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="how" id="how">
-        <div class="container">
-            <div class="section-eyebrow reveal">How It Works</div>
-            <div class="section-headline reveal">Four steps.<br>No surprises.</div>
-            <p class="section-sub reveal">Transparent from start to finish. You always know what you're paying for.</p>
-            <div class="steps reveal">
-                <div class="step">
-                    <div class="step-num">01</div>
-                    <h4>Tell Us</h4>
-                    <p>Quick consultation. We scope the work and give you a fixed price.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">02</div>
-                    <h4>Pay Deposit</h4>
-                    <p>50% upfront. We start building immediately.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">03</div>
-                    <h4>Review</h4>
-                    <p>You get a demo. Request changes. We make it right.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">04</div>
-                    <h4>Done</h4>
-                    <p>Approve. Pay the balance. It's live.</p>
-                </div>
+<section class="sec" id="faq">
+    <div class="wrap">
+        <div class="sec-head">
+            <div class="sec-label">FAQ</div>
+            <div class="sec-title">Common questions.</div>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Do you use templates?</h4>
+                <p>No. Every site is built from scratch. Your site won't look like anyone else's.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Are there monthly fees?</h4>
+                <p>No. You pay once, you own it. Hosting and domain are yours (typically $10-20/mo).</p>
+            </div>
+            <div class="faq-item">
+                <h4>What if I need changes after launch?</h4>
+                <p>Two rounds of revisions are included. Post-launch changes are $75/hour.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Do you work internationally?</h4>
+                <p>Yes. We work with clients anywhere. Communication in English, payments in USD via Stripe.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-eyebrow reveal">Pricing</div>
-            <div class="section-headline reveal">20% below market.<br>No hidden fees.</div>
-            <p class="section-sub reveal">You get the same quality as a premium agency, without the premium price tag.</p>
-            <div class="pricing-grid">
-                <div class="price-card reveal reveal-d1">
-                    <div class="price-label">Starter</div>
-                    <h3>Landing Page</h3>
-                    <div class="price-amount">$400</div>
-                    <div class="price-note">$200 deposit + $200 on delivery</div>
-                    <div class="price-divider"></div>
-                    <ul class="price-features">
-                        <li><span class="check">✓</span>Custom design</li>
-                        <li><span class="check">✓</span>Mobile responsive</li>
-                        <li><span class="check">✓</span>Contact form</li>
-                        <li><span class="check">✓</span>SEO basics</li>
-                        <li><span class="check">✓</span>3-day turnaround</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/test_cNibJ12fJfcM0Rf3zp3ks05" class="price-btn price-btn-secondary">Pay Deposit — $200</a>
-                </div>
-                <div class="price-card featured reveal reveal-d2">
-                    <div class="price-label">Most Popular</div>
-                    <h3>Business Site</h3>
-                    <div class="price-amount">$960</div>
-                    <div class="price-note">$480 deposit + $480 on delivery</div>
-                    <div class="price-divider"></div>
-                    <ul class="price-features">
-                        <li><span class="check">✓</span>Multi-page site</li>
-                        <li><span class="check">✓</span>Service + product pages</li>
-                        <li><span class="check">✓</span>About + contact</li>
-                        <li><span class="check">✓</span>Google Maps integration</li>
-                        <li><span class="check">✓</span>5-day turnaround</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/test_00w9ATg6z7KkdE10nd3ks07" class="price-btn price-btn-primary">Pay Deposit — $480</a>
-                </div>
-                <div class="price-card reveal reveal-d3">
-                    <div class="price-label">Scale</div>
-                    <h3>E-Commerce</h3>
-                    <div class="price-amount">$2,000</div>
-                    <div class="price-note">$1,000 deposit + $1,000 on delivery</div>
-                    <div class="price-divider"></div>
-                    <ul class="price-features">
-                        <li><span class="check">✓</span>Product catalog</li>
-                        <li><span class="check">✓</span>Cart + checkout</li>
-                        <li><span class="check">✓</span>Payment processing</li>
-                        <li><span class="check">✓</span>Inventory management</li>
-                        <li><span class="check">✓</span>10-day turnaround</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/test_cNifZh7A37Kk43r3zp3ks09" class="price-btn price-btn-secondary">Pay Deposit — $1,000</a>
-                </div>
-                <div class="price-card reveal reveal-d4">
-                    <div class="price-label">Custom</div>
-                    <h3>Automation</h3>
-                    <div class="price-amount">$1,200</div>
-                    <div class="price-note">$600 deposit + $600 on delivery</div>
-                    <div class="price-divider"></div>
-                    <ul class="price-features">
-                        <li><span class="check">✓</span>Workflow mapping</li>
-                        <li><span class="check">✓</span>Custom scripts</li>
-                        <li><span class="check">✓</span>Scheduling systems</li>
-                        <li><span class="check">✓</span>Data pipelines</li>
-                        <li><span class="check">✓</span>7-day turnaround</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/test_14A00j4nR1lWeI5d9Z3ks0b" class="price-btn price-btn-secondary">Pay Deposit — $600</a>
-                </div>
+<section class="sec sec-alt" id="contact">
+    <div class="wrap">
+        <div class="cta-box">
+            <h2>Ready to get started?</h2>
+            <p>Tell us about your business. We'll reply within 24 hours with a quote.</p>
+            <div class="hero-btns">
+                <a href="mailto:hello@chengjam.com" class="btn btn-primary">Email Us</a>
+                <a href="#pricing" class="btn btn-secondary">View Pricing</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="trust">
-        <div class="container">
-            <div class="section-eyebrow reveal">Quality Guarantee</div>
-            <div class="section-headline reveal">Every delivery<br>passes 10 checks.</div>
-            <p class="section-sub reveal">We don't ship until it's right.</p>
-            <div class="trust-grid reveal">
-                <div class="trust-card">
-                    <div class="trust-number">100%</div>
-                    <h4>Mobile Responsive</h4>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-number">&lt;2s</div>
-                    <h4>Load Time</h4>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-number">98+</div>
-                    <h4>Lighthouse Score</h4>
-                </div>
+<footer>
+    <div class="wrap">
+        <div class="ft-inner">
+            <div class="ft-brand">Cheng-Jam</div>
+            <div class="ft-links">
+                <a href="#services">Services</a>
+                <a href="#work">Work</a>
+                <a href="#pricing">Pricing</a>
+                <a href="mailto:hello@chengjam.com">Contact</a>
             </div>
+            <div class="ft-copy">&copy; 2026 Cheng-Jam. All rights reserved.</div>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Cheng-Jam. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>
