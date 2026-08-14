@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheng-Jam — AI-Powered Business Services</title>
+    <style>
+        :root {
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+            --bg: #09090b;
+            --bg-card: #18181b;
+            --border: #27272a;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --accent: #6d5cff;
+            --accent-light: #a78bfa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+        /* --- Header --- */
+        header {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(109, 92, 255, 0.25);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: #3f3f46;
+        }
+
+        /* --- Services --- */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 28px;
+            transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out);
+        }
+
+        .service-card:hover {
+            border-color: #3f3f46;
+            transform: translateY(-2px);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(109, 92, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* --- How It Works --- */
+        .how {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            counter-increment: step;
+        }
+
+        .step::before {
+            content: counter(step);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .step h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* --- Pricing --- */
+        .pricing {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            position: relative;
+        }
+
+        .price-card.featured::after {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 32px;
+            padding: 4px 12px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 6px;
+        }
+
+        .price-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--accent-light);
+            margin-bottom: 4px;
+        }
+
+        .price-note {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 24px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .price-features li {
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: "";
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(109, 92, 255, 0.15);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-features li::after {
+            content: "✓";
+            font-size: 0.65rem;
+            color: var(--accent);
+            position: absolute;
+            margin-left: 4px;
+        }
+
+        .price-features li { position: relative; }
+
+        /* --- Quality --- */
+        .quality {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .quality-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        .quality-item strong {
+            color: var(--text);
+        }
+
+        .quality-item span {
+            color: var(--text-muted);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #52525b;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* --- Stagger Animation --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger > * {
+            opacity: 0;
+            animation: fadeUp 500ms var(--ease-out) forwards;
+        }
+
+        .stagger > *:nth-child(1) { animation-delay: 0ms; }
+        .stagger > *:nth-child(2) { animation-delay: 60ms; }
+        .stagger > *:nth-child(3) { animation-delay: 120ms; }
+        .stagger > *:nth-child(4) { animation-delay: 180ms; }
+        .stagger > *:nth-child(5) { animation-delay: 240ms; }
+        .stagger > *:nth-child(6) { animation-delay: 300ms; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .stagger > * {
+                animation: none;
+                opacity: 1;
+            }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            header { padding: 80px 0 60px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .quality-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .service-card:hover { transform: translateY(-2px); }
+            .btn-primary:hover { transform: translateY(-1px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="badge">AI-Powered Firm</div>
+            <h1>Build what matters.<br><span>We handle the rest.</span></h1>
+            <p class="subtitle">Websites, automation, and business systems — built fast, priced fair, done right.</p>
+            <div class="cta-group">
+                <a href="#pricing" class="btn btn-primary">See Pricing</a>
+                <a href="#how" class="btn btn-secondary">How It Works</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="services">
+        <div class="container stagger">
+            <div class="section-label">What We Do</div>
+            <div class="section-title">Three services. Zero fluff.</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Websites</h3>
+                    <p>Landing pages, business sites, e-commerce stores. Mobile-first, fast, SEO-ready.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Automation</h3>
+                    <p>Workflow scripts, data pipelines, scheduling. Save hours every week.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Business Systems</h3>
+                    <p>CRM setup, client tracking, operations. Run your business like a machine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how" id="how">
+        <div class="container stagger">
+            <div class="section-label">How It Works</div>
+            <div class="section-title">Four steps. No surprises.</div>
+            <div class="steps">
+                <div class="step">
+                    <h4>Tell Us</h4>
+                    <p>Quick consultation. We scope the work and give you a fixed price.</p>
+                </div>
+                <div class="step">
+                    <h4>Pay Deposit</h4>
+                    <p>50% upfront via Stripe. We start building immediately.</p>
+                </div>
+                <div class="step">
+                    <h4>Review</h4>
+                    <p>You get a demo. Request changes. We make it right.</p>
+                </div>
+                <div class="step">
+                    <h4>Done</h4>
+                    <p>Approve the work. Pay the balance. It's live.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container stagger">
+            <div class="section-label">Pricing</div>
+            <div class="section-title">20% below market. No hidden fees.</div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Landing Page</h3>
+                    <div class="price-amount">$400</div>
+                    <div class="price-note">$200 deposit + $200 on delivery</div>
+                    <ul class="price-features">
+                        <li>Custom design</li>
+                        <li>Mobile responsive</li>
+                        <li>Contact form</li>
+                        <li>SEO basics</li>
+                        <li>3-day turnaround</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <h3>Business Site</h3>
+                    <div class="price-amount">$600</div>
+                    <div class="price-note">$300 deposit + $300 on delivery</div>
+                    <ul class="price-features">
+                        <li>Multi-page site</li>
+                        <li>Service + product pages</li>
+                        <li>About + contact</li>
+                        <li>Google Maps integration</li>
+                        <li>5-day turnaround</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>E-Commerce</h3>
+                    <div class="price-amount">$2,500</div>
+                    <div class="price-note">$1,250 deposit + $1,250 on delivery</div>
+                    <ul class="price-features">
+                        <li>Product catalog</li>
+                        <li>Cart + checkout</li>
+                        <li>Payment processing</li>
+                        <li>Inventory management</li>
+                        <li>10-day turnaround</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Automation</h3>
+                    <div class="price-amount">$1,500</div>
+                    <div class="price-note">$750 deposit + $750 on delivery</div>
+                    <ul class="price-features">
+                        <li>Workflow mapping</li>
+                        <li>Custom scripts</li>
+                        <li>Scheduling systems</li>
+                        <li>Data pipelines</li>
+                        <li>7-day turnaround</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality">
+        <div class="container stagger">
+            <div class="section-label">Quality Guarantee</div>
+            <div class="section-title">Every delivery passes 10 checks.</div>
+            <div class="quality-grid">
+                <div class="quality-item"><strong>Mobile First</strong> <span>— works perfectly on every screen.</span></div>
+                <div class="quality-item"><strong>Fast Loading</strong> <span>— under 100KB, loads in under 2 seconds.</span></div>
+                <div class="quality-item"><strong>SEO Ready</strong> <span>— proper headings, meta tags, semantic HTML.</span></div>
+                <div class="quality-item"><strong>SSL Secured</strong> <span>— HTTPS enabled from day one.</span></div>
+                <div class="quality-item"><strong>2 Revisions</strong> <span>— we refine until you're happy.</span></div>
+                <div class="quality-item"><strong>10-Point Check</strong> <span>— nothing leaves without passing.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">&copy; 2026 Cheng-Jam. All rights reserved.</div>
+    </footer>
+</body>
+</html>

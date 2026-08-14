@@ -1,0 +1,40 @@
+# Runtime
+*.db
+*.log
+*.log.*
+*.gz
+*.jsonl
+
+# Backups
+backups/
+backup_*/
+
+# State files (written by runtime)
+heartbeat.json
+universe_cache.json
+sandbox_log.jsonl
+jarvis_state_index.json
+news_seen_cache.json
+evolution_state.json
+evolution_log.jsonl
+self_repair_log.jsonl
+*.state
+
+# Static build
+static/
+
+# Vault mirror
+vault_mirror/
+
+# Reports
+reports/
+
+# Logs
+logs/
+
+# Scripts (generated)
+api_push.sh
+check_*.sh
+commit.sh
+debug_repo.sh
+push*.sh
